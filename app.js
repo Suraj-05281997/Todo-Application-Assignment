@@ -84,17 +84,17 @@ const checkRequestsQueries = async (request, response, next) => {
       console.log(result, "r");
       console.log(new Date(), "new");
 
-      console isValidDate = await isValid(result);
-      console.log(isValidDate === true) {
+      const isValidDate = await isValid(result);
+        if(isValidDate === true) {
           request.date = formatedDate;
       } else {
           response.status(400);
           response.send("Invalid Due Date");
-          return;
+        return;
       } catch(e) {
           response.status(400);
           response.send("Invalid Due Date");
-          return;
+        return;
       }
     }
 
@@ -148,14 +148,16 @@ const checkRequestsBody = (request, response, next) => {
  if (dueDate !== undefined) {
      try {
          const myDate = new Date(dueDate);
+         
          const formatedDate = format(new Date(dueDate), "yyyy-MM-dd");
          console.log(formatedDate);
+
          const result = toDate(new Date(formatedDate));
          const isValidDate = isValid(result);
          console.log(isValidDate);
          console.log(isValidDate);
          if (isValidDate === true) {
-             request.dueDate = formatedDate;
+             request.date = formatedDate;
          } else {
              response.status(400);
              response.send("Invalid Due Date");
@@ -314,7 +316,7 @@ app.put("/todos/:todoId/", checkRequestsBody, async (request,response) => {
                    id = ${todoId}'
         ;`;
 
-        await db.run(updateTodoQuery):
+        await db.run(updateTodoQuery);
         response.send("Todo Updated");
      break;
         case category !== undefined:
