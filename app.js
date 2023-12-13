@@ -351,7 +351,7 @@ app.put("/todos/:todoId/", checkRequestsBody, async (request, response) => {
 app.delete("/todos/:todoId/", async (request, response) => {
   const { todoId } = request.params;
   const deleteTodoQuery = `
-            DELETE ROW
+            DELETE FROM
                 todo
             WHERE
                 id = ${todoId}
