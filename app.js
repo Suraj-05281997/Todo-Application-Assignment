@@ -124,7 +124,7 @@ const checkRequestsBody = (request, response, next) => {
 
   if (priority !== undefined) {
     priorityArray = ["HIGH", "MEDIUM", "LOW"];
-    priorityIsInArray === priorityArray.includes(priority);
+    priorityIsInArray = priorityArray.includes(priority);
     if (priorityIsInArray === true) {
       request.priority = priority;
     } else {
