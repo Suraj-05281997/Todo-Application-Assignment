@@ -275,9 +275,9 @@ app.post("/todos/", checkRequestsBody, async (request, response) => {
 
 //Update Todo API-5
 app.put("/todos/:todoId/", checkRequestsBody, async (request, response) => {
-  const { todoId } = request;
+  const { todoId } = request.params;
 
-  const { priority, todo, status, category, dueDate } = request;
+  const { priority, todo, status, category, dueDate } = request.body;
 
   let updateTodoQuery = null;
 
@@ -341,8 +341,12 @@ app.put("/todos/:todoId/", checkRequestsBody, async (request, response) => {
                     WHERE
                          id = ${todoId}
         ;`;
-      await db.run(updateCategoryQuery);
+      await db.run(updateDateQuery);
       response.send("Due Date Updated");
+      break;
+    default:
+      response.status(400);
+      response.send("Invalid update");
       break;
   }
 });
