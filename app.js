@@ -224,6 +224,7 @@ app.get("/todos/:todoId", checkRequestsQueries, async (request, response) => {
 //GET Agenda API-3
 app.get("/agenda/", checkRequestsQueries, async (request, response) => {
   const { data } = request;
+  const dateFormat = format(new Date(date), "yyyy-MM-dd");
   console.log(date, "a");
 
   const selectDueDateQuery = `
